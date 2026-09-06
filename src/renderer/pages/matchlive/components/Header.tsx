@@ -40,7 +40,6 @@ const Header = ({
   return (
     <HeaderContainer $isAbsolute={$isAbsolute}>
       <LeagueInfo>
-        {info.league.logo && <LeagueLogo src={info.league.logo} alt="" />}
         <LeagueName>{info.league.koreanName || info.league.name}</LeagueName>
       </LeagueInfo>
 
@@ -120,15 +119,8 @@ const HeaderContainer = styled.div<{ $isAbsolute: boolean }>`
 const LeagueInfo = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
   margin-bottom: 12px;
   justify-content: center;
-`;
-
-const LeagueLogo = styled.img`
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
 `;
 
 const LeagueName = styled.div`

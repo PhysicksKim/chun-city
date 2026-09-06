@@ -108,11 +108,6 @@ const LeagueSelector = ({
                   $selected={selectedLeagueUid === league.uid}
                   onClick={() => handleLeagueClick(league.uid)}
                 >
-                  <LeagueLogo
-                    draggable="false"
-                    src={league.logo}
-                    alt={league.name}
-                  />
                   <LeagueName>{league.nameKo ?? league.name}</LeagueName>
                 </LeagueCard>
               ))}
@@ -241,15 +236,6 @@ const LeagueCard = styled.div<{ $selected: boolean }>`
 
   box-shadow: ${({ $selected }) =>
     $selected ? '0 4px 12px rgba(59, 119, 209, 0.3)' : 'none'};
-`;
-
-const LeagueLogo = styled.img`
-  width: 100px;
-  height: 45px;
-  object-fit: contain;
-  margin-bottom: 10px;
-  margin-top: 5px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 `;
 
 const LeagueName = styled.div`

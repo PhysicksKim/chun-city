@@ -88,6 +88,7 @@ const textShadowStyle = css`
     0px -1px ${textShadowColor};
 `;
 const isTextShadow = true;
+const playerNameOverlapOffsetPx = 7;
 
 const fadeIn = keyframes`
   from {
@@ -437,7 +438,7 @@ export const PlayerNumber: React.FC<{ number: number }> = ({ number }) => {
 const PlayerNameSpan = styled.span<{ $fontsize: number }>`
   position: relative;
   overflow: visible;
-  transform: translate(0, -3px);
+  transform: translate(0, -${playerNameOverlapOffsetPx}px);
   background-color: #0a4192c1;
   padding: 0 2px;
   border-radius: 5px;

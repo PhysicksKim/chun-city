@@ -37,6 +37,7 @@ httpClient.interceptors.request.use((config) => {
       ? config.headers
       : new AxiosHeaders(config.headers);
   headers.set('X-Footballay-Env', appEnv);
+  headers.set('Accept-Language', 'ko');
 
   // Cloudflare Access headers for dev environment
   if (appEnv === 'dev') {

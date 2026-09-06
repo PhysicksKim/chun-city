@@ -44,25 +44,23 @@ const FixtureItem = ({ fixture }: FixtureItemProps) => {
       </ScheduleBox>
 
       <VersusBox>
-        <TeamBox>
+        <TeamSide $side="home">
           <TeamMark $type="home">H</TeamMark>
           <TeamLogo logo={homeTeam.logo} name={homeTeam.name} />
-        </TeamBox>
+          <TeamName>{homeTeam.name}</TeamName>
+        </TeamSide>
 
-        <CenterBox>
-          <TeamName>{homeTeam.koreanName || homeTeam.name}</TeamName>
-          <ScoreBox>
-            <Score>{score?.home ?? 0}</Score>
-            <Divider>:</Divider>
-            <Score>{score?.away ?? 0}</Score>
-          </ScoreBox>
-          <TeamName>{awayTeam.koreanName || awayTeam.name}</TeamName>
-        </CenterBox>
+        <ScoreBox>
+          <Score>{score?.home ?? 0}</Score>
+          <Divider>:</Divider>
+          <Score>{score?.away ?? 0}</Score>
+        </ScoreBox>
 
-        <TeamBox>
+        <TeamSide $side="away">
+          <TeamName>{awayTeam.name}</TeamName>
           <TeamLogo logo={awayTeam.logo} name={awayTeam.name} />
           <TeamMark $type="away">A</TeamMark>
-        </TeamBox>
+        </TeamSide>
       </VersusBox>
 
       <StatusBox>
@@ -98,8 +96,7 @@ const Container = styled.div`
 `;
 
 const ScheduleBox = styled.div`
-  margin-left: 7px;
-  width: 80px;
+  flex: 0 0 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -129,17 +126,21 @@ const RoundText = styled.div`
 const VersusBox = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 6px;
 `;
 
-const TeamBox = styled.div`
+const TeamSide = styled.div<{ $side: 'home' | 'away' }>`
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: ${({ $side }) =>
+    $side === 'home' ? 'flex-start' : 'flex-end'};
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 `;
 
 const TeamMark = styled.div<{ $type: 'home' | 'away' }>`
@@ -157,32 +158,22 @@ const TeamMark = styled.div<{ $type: 'home' | 'away' }>`
     $type === 'home' ? '#565897' : '#d89066'};
 `;
 
-const CenterBox = styled.div`
-  flex: 0 0 auto;
-  min-width: 210px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3px;
-  gap: 4px;
-`;
-
 const TeamName = styled.div`
-  flex: 1;
-  min-width: 85px;
-  max-width: 150px;
+  flex: 1 1 0;
+  min-width: 0;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  line-height: 1.2;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 `;
 
 const ScoreBox = styled.div`
-  width: 40px;
+  flex: 0 0 40px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -201,12 +192,12 @@ const Divider = styled.div`
 `;
 
 const StatusBox = styled.div`
+  flex: 0 0 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 5px;
-  min-width: 60px;
   margin-right: 10px;
 `;
 
@@ -227,6 +218,7 @@ const LiveBtnBox = styled.div<{ $available: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 0 0 40px;
   width: 40px;
   height: 34px;
   border-radius: 7px;
@@ -241,4 +233,3 @@ const LiveBtnBox = styled.div<{ $available: boolean }>`
     transition: 0.2s;
   }
 `;
-

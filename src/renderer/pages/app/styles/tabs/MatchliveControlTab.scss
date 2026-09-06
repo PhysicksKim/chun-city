@@ -59,20 +59,7 @@
       border-radius: 14px;
       background-color: $card-background;
 
-      .league-logo-img {
-        height: 35px;
-        width: 35px;
-        box-sizing: border-box;
-        padding: 5px;
-
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: contain;
-        }
-      }
       .league-info {
-        margin-left: 5px;
         padding-top: 7px;
         padding-left: 5px;
         padding-right: 15px;

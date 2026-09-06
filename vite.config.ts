@@ -16,7 +16,7 @@ export default defineConfig(({ command }) => {
   const sourcemap = isServe || !!process.env.VSCODE_DEBUG;
 
   // Load .env.secret if exists (dev server only)
-  if (isServe) {
+  if (isServe && process.env.VITE_APP_ENV === 'dev') {
     const secretPath = resolve(__dirname, '.env.secret');
     if (existsSync(secretPath)) {
       const secretContent = readFileSync(secretPath, 'utf-8');

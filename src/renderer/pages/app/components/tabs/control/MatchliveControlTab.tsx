@@ -124,11 +124,6 @@ const MatchliveControlTab = () => {
         {isInfoReady ? (
           <>
             <div className="league-info-box">
-              <div className="league-logo-img">
-                {info.league.logo && (
-                  <img src={info.league.logo} alt={info.league.name} />
-                )}
-              </div>
               <div className="league-info">
                 <span>{info.league.koreanName || info.league.name}</span>
               </div>
@@ -235,4 +230,3 @@ const MatchliveControlTab = () => {
 };
 
 export default MatchliveControlTab;
-

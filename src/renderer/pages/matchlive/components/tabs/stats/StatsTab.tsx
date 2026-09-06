@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { RootState } from '@matchlive/store/store';
 import { XgEntry } from '@src/renderer/pages/app/v1/types/api';
+import { getPassAccuracy } from '@app/components/processing/ViewStatisticsLogic';
 import PassSuccessPieChart from './PassSuccessPieChart';
 import {
   selectHomeColor,
@@ -123,23 +124,8 @@ const StatsTab = ({ isActive }: StatsTabProps) => {
     }
   );
 
-  // Calculate pass accuracy percentage for pie chart
-  // API에서 passesAccuracyPercentage를 제공하면 사용하고, 아니면 계산
-  const homePassAccuracy =
-    homeStats.passesAccuracyPercentage ??
-    (homeStats.totalPasses && homeStats.totalPasses > 0
-      ? Math.round(
-          ((homeStats.passesAccurate || 0) / homeStats.totalPasses) * 100
-        )
-      : 0);
-
-  const awayPassAccuracy =
-    awayStats.passesAccuracyPercentage ??
-    (awayStats.totalPasses && awayStats.totalPasses > 0
-      ? Math.round(
-          ((awayStats.passesAccurate || 0) / awayStats.totalPasses) * 100
-        )
-      : 0);
+  const homePassAccuracy = getPassAccuracy(homeStats);
+  const awayPassAccuracy = getPassAccuracy(awayStats);
 
   // XG 값 계산 (가장 큰 elapsed의 xg)
   const homeXg = getLatestXg(homeStats.xg);
@@ -302,14 +288,6 @@ const StatsTab = ({ isActive }: StatsTabProps) => {
             label="성공한 패스"
             homeValue={homeStats.passesAccurate}
             awayValue={awayStats.passesAccurate}
-            homeColor={homeColor}
-            awayColor={awayColor}
-          />
-          <StatRow
-            label="패스 성공률"
-            homeValue={homePassAccuracy}
-            awayValue={awayPassAccuracy}
-            isPercentage
             homeColor={homeColor}
             awayColor={awayColor}
           />

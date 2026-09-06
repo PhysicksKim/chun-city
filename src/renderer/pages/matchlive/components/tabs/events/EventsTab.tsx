@@ -121,7 +121,7 @@ const EventCard = ({ event }: { event: EventInfo }) => {
             {event.player?.koreanName || event.player?.name || ''}
             {event.assist && assistLabel && (
               <AssistInfo>
-                ({assistLabel}: {event.assist.koreanName || event.assist.name})
+                {assistLabel}: {event.assist.koreanName || event.assist.name}
               </AssistInfo>
             )}
           </EventPlayer>
@@ -303,17 +303,15 @@ const EventPlayer = styled.div`
   font-weight: 500;
 `;
 
-const AssistInfo = styled.span`
+const AssistInfo = styled.div`
   font-size: 13px;
   color: #666;
   font-weight: 400;
-  margin-left: 4px;
 `;
 
 const EventComments = styled.div`
   font-size: 12px;
   color: #888;
-  font-style: italic;
 `;
 
 const TeamBadge = styled.div`

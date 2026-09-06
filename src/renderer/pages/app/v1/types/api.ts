@@ -7,6 +7,7 @@ export interface PlayerColor {
 export interface TeamInfo {
   teamUid: string;
   name: string;
+  shortName?: string;
   koreanName?: string;
   logo?: string;
   playerColor?: PlayerColor;
@@ -15,6 +16,7 @@ export interface TeamInfo {
 export interface AvailableLeagueResponse {
   uid: string;
   name: string;
+  shortName?: string;
   nameKo?: string;
   logo?: string;
 }
@@ -60,6 +62,7 @@ export interface FixtureInfoResponse {
   league: {
     leagueUid: string;
     name: string;
+    shortName?: string;
     koreanName?: string;
     logo?: string;
   };
@@ -71,6 +74,7 @@ export interface LineupPlayer {
   matchPlayerUid: string;
   playerUid: string;
   name: string;
+  shortName?: string;
   koreanName?: string;
   number?: number;
   photo?: string;
@@ -82,6 +86,7 @@ export interface LineupPlayer {
 export interface StartLineup {
   teamUid: string;
   teamName: string;
+  teamShortName?: string;
   teamKoreanName?: string;
   formation?: string;
   players: LineupPlayer[];
