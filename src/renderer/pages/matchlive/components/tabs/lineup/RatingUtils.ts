@@ -20,5 +20,11 @@ const getRatingColor = (floatRating: number | string) => {
   return ratingColor;
 };
 
-export default getRatingColor;
+export const isValidRating = (rating?: string): rating is string => {
+  if (!rating?.trim()) return false;
 
+  const parsedRating = Number(rating);
+  return Number.isFinite(parsedRating) && parsedRating > 0;
+};
+
+export default getRatingColor;

@@ -1,7 +1,7 @@
 import { PlayerStatistics } from '@src/renderer/pages/app/v1/types/api';
 import React from 'react';
 import styled from 'styled-components';
-import getRatingColor from './RatingUtils';
+import getRatingColor, { isValidRating } from './RatingUtils';
 import { faFutbolBall } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RetryableImage from '@matchlive/components/common/RetryableImage';
@@ -28,10 +28,12 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       </div>
       <div className="player-infos">
         <div className="player-name">{name}</div>
-        <div className="player-rating-box">
-          <div className="rating-title">평점</div>
-          <PlayerStatisticsRatingBox rating={rating} />
-        </div>
+        {isValidRating(rating) && (
+          <div className="player-rating-box">
+            <div className="rating-title">평점</div>
+            <PlayerStatisticsRatingBox rating={rating} />
+          </div>
+        )}
         <div className="player-goal-assist-box">
           <div className="player-stat stat-goals">
             <div className="stat-title stat-title-goals">Goals</div>
@@ -289,12 +291,15 @@ const ProfileSectionContainer = styled.div`
     align-items: flex-start;
     margin-left: 10px;
     flex-grow: 1;
+    min-width: 0;
 
     .player-name {
       font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 5px;
-      white-space: nowrap;
+      font-weight: 600;
+      margin-bottom: 10px;
+      white-space: normal;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
     }
 
     .player-rating-box {
@@ -391,11 +396,10 @@ const RatingBoxStyle = styled.div<{ $ratingColor: string }>`
 const PlayerStatisticsRatingBox: React.FC<{ rating: string }> = ({
   rating,
 }) => {
+  if (!isValidRating(rating)) return null;
+
   const ratingColor = getRatingColor(rating);
-  const floatRating = parseFloat(rating);
-  if (!rating || typeof floatRating !== 'number') {
-    return <RatingBoxStyle $ratingColor={ratingColor}></RatingBoxStyle>;
-  }
+  const floatRating = Number(rating);
 
   const formattedRating = floatRating.toFixed(1);
   return (

@@ -13,6 +13,7 @@ import {
 } from './LineupStyled';
 import RetryableImage from '@matchlive/components/common/RetryableImage';
 import styled from 'styled-components';
+import { isValidRating } from './RatingUtils';
 
 const getFinalPlayer = (player: ViewPlayer): ViewPlayer => {
   let currentPlayer = player;
@@ -72,6 +73,7 @@ const LineupGrid: React.FC<LineupGridProps> = ({
             const photoSize = Math.max(lineHeight - 20, 0);
             const nameFontSize = 16;
             const isRenderable = photoSize > 0;
+            const rating = finalPlayer.statistics?.rating;
 
             return (
               isRenderable && (
@@ -95,7 +97,7 @@ const LineupGrid: React.FC<LineupGridProps> = ({
                     )}
 
                     <PlayerName
-                      name={finalPlayer.name}
+                      name={finalPlayer.shortName ?? finalPlayer.name}
                       fontSize={nameFontSize}
                     />
 
@@ -129,9 +131,7 @@ const LineupGrid: React.FC<LineupGridProps> = ({
                         photoSize={photoSize}
                       />
                     )}
-                    {finalPlayer.statistics?.rating && (
-                      <RatingBox rating={finalPlayer.statistics.rating} />
-                    )}
+                    {isValidRating(rating) && <RatingBox rating={rating} />}
                   </PlayerNumberPhotoBox>
                 </GridPlayer>
               )

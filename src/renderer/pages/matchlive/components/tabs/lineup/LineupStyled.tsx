@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled, { css, keyframes } from 'styled-components';
 import React from 'react';
 import { PlayerStatisticsList, ProfileSection } from './PlayerStatistics';
-import getRatingColor from './RatingUtils';
+import getRatingColor, { isValidRating } from './RatingUtils';
 import { ViewPlayer } from './types';
 import { GlobalBorderRadiusPx } from '@matchlive/components/common/StyleConstant';
 
@@ -519,8 +519,9 @@ const RatingWrapper = styled.div<{ $ratingColor: string }>`
 `;
 
 export const RatingBox: React.FC<{ rating: string }> = ({ rating }) => {
-  const floatRating = parseFloat(rating);
-  if (isNaN(floatRating)) return null;
+  if (!isValidRating(rating)) return null;
+
+  const floatRating = Number(rating);
 
   const formattedRating = floatRating.toFixed(1);
   const ratingColor = getRatingColor(floatRating);
