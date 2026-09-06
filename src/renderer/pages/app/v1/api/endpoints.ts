@@ -3,6 +3,7 @@ import { ensureArray, ensureObject } from './validators';
 import {
   AvailableLeagueResponse,
   FixtureByLeagueResponse,
+  FixtureDatesByLeagueResponse,
   FixtureEventsResponse,
   FixtureInfoResponse,
   FixtureLineupResponse,
@@ -18,6 +19,13 @@ export interface FetchFixturesParams {
   mode?: FixtureMode;
   timezone?: string;
   isSilent?: boolean;
+}
+
+export interface FetchFixtureDatesParams {
+  leagueUid: string;
+  startDate: string;
+  endDate: string;
+  timezone?: string;
 }
 
 export const fetchAvailableLeagues = async () => {
@@ -44,6 +52,19 @@ export const fetchFixturesByLeague = async ({
     }
   );
   return ensureArray<FixtureByLeagueResponse>(data, 'fixtures');
+};
+
+export const fetchFixtureDatesByLeague = async ({
+  leagueUid,
+  startDate,
+  endDate,
+  timezone,
+}: FetchFixtureDatesParams) => {
+  const { data } = await httpClient.get<FixtureDatesByLeagueResponse>(
+    `/v1/football/leagues/${leagueUid}/fixtures/dates`,
+    { params: { startDate, endDate, timezone } }
+  );
+  return ensureObject<FixtureDatesByLeagueResponse>(data, 'fixture dates');
 };
 
 export const fetchFixtureInfo = async (fixtureUid: string) => {

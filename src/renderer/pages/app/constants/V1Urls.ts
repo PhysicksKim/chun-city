@@ -46,6 +46,13 @@ export const V1Urls = {
     fixturesOfLeague: (leagueUid: string) =>
       getApiUrl(`/v1/football/${leagueUid}/fixtures`),
     /**
+     * 특정 리그의 경기 보유 날짜 조회
+     * @param leagueUid - 리그 UID
+     * @returns 완전한 API URL
+     */
+    fixtureDatesByLeague: (leagueUid: string) =>
+      getApiUrl(`/v1/football/leagues/${leagueUid}/fixtures/dates`),
+    /**
      * 경기 정보 조회
      * @param fixtureUid - 경기 UID
      * @returns 완전한 API URL

@@ -8,6 +8,8 @@ import { FixtureByLeagueResponse } from '@app/v1/types/api';
 import FixtureItem from './FixtureItem';
 import { FixtureMode } from '@app/v1/api/endpoints';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fetchFixtureDatesByLeague } from '@app/v1/api/endpoints';
+import { getCalendarDateRange } from '@app/v1/utils/date';
 import {
   faChevronLeft,
   faChevronRight,
@@ -20,19 +22,26 @@ registerLocale('ko', ko);
 
 interface FixtureListProps {
   fixtures: FixtureByLeagueResponse[];
+  leagueUid?: string;
   selectedDate: string; // YYYY-MM-DD
+  timezone: string;
   loading: boolean;
   onRequestFetch: (date: string, mode: FixtureMode) => void;
 }
 
 const FixtureList = ({
   fixtures,
+  leagueUid,
   selectedDate,
+  timezone,
   loading,
   onRequestFetch,
 }: FixtureListProps) => {
   // 내부적으로 표시할 날짜 상태 관리
   const [internalDate, setInternalDate] = React.useState(selectedDate);
+  const [fixtureDates, setFixtureDates] = React.useState<Set<string> | null>(
+    null
+  );
 
   const listBoxRef = React.useRef<HTMLDivElement>(null);
 
@@ -59,6 +68,10 @@ const FixtureList = ({
       }
     }
   }, [selectedDate]);
+
+  React.useEffect(() => {
+    setFixtureDates(null);
+  }, [leagueUid]);
 
   /**
    * 사용자가 스크롤할 때 현재 위치 저장
@@ -123,6 +136,36 @@ const FixtureList = ({
     }
   };
 
+  const loadFixtureDates = React.useCallback(
+    async (month: Date) => {
+      if (!leagueUid) return;
+
+      const { startDate, endDate } = getCalendarDateRange(month);
+      try {
+        const { dates } = await fetchFixtureDatesByLeague({
+          leagueUid,
+          startDate,
+          endDate,
+          timezone,
+        });
+        setFixtureDates(new Set(dates));
+      } catch (error) {
+        console.error('Failed to fetch fixture dates', error);
+      }
+    },
+    [leagueUid, timezone]
+  );
+
+  const fixtureDateClassName = React.useCallback(
+    (date: Date) => {
+      if (!fixtureDates) return '';
+      return fixtureDates.has(format(date, 'yyyy-MM-dd'))
+        ? 'fixture-date--has-match'
+        : 'fixture-date--no-match';
+    },
+    [fixtureDates]
+  );
+
   const formattedDate = parseISO(internalDate);
   const yearMonth = format(formattedDate, 'yyyy.MM');
   const dayOfWeek = format(formattedDate, 'dd EEE', { locale: ko }) + '요일';
@@ -180,6 +223,9 @@ const FixtureList = ({
               dateFormat="yyyy-MM-dd"
               popperPlacement="bottom"
               enableTabLoop={false}
+              dayClassName={fixtureDateClassName}
+              onCalendarOpen={() => void loadFixtureDates(formattedDate)}
+              onMonthChange={(month) => void loadFixtureDates(month)}
             />
           </DatePickerWrapper>
 
@@ -260,6 +306,14 @@ const DatePickerStyles = createGlobalStyle`
     &:hover {
       background-color: rgba(255, 255, 255, 0.1) !important;
       border-radius: 6px !important;
+    }
+
+    &.fixture-date--has-match {
+      color: #fff !important;
+    }
+
+    &.fixture-date--no-match {
+      color: #777786 !important;
     }
   }
 

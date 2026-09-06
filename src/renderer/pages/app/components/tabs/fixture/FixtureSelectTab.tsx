@@ -200,7 +200,11 @@ const FixtureSelectTab = () => {
       />
       <FixtureList
         fixtures={fixtures}
+        leagueUid={selectedLeague}
         selectedDate={selectedDate}
+        timezone={
+          requestTimezone.trim() || timezonePreference || DEFAULT_TIMEZONE
+        }
         loading={fixturesStatus === 'loading'}
         onRequestFetch={handleRequestFetch}
       />

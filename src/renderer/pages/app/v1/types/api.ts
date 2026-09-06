@@ -43,6 +43,10 @@ export interface FixtureByLeagueResponse {
   available: boolean;
 }
 
+export interface FixtureDatesByLeagueResponse {
+  dates: string[];
+}
+
 export interface LiveStatus {
   elapsed?: number;
   shortStatus: string;

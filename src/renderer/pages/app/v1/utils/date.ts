@@ -1,4 +1,11 @@
+import { endOfMonth, endOfWeek, format, startOfMonth, startOfWeek } from 'date-fns';
+
 export const DEFAULT_TIMEZONE = 'Asia/Seoul';
+
+export const getCalendarDateRange = (month: Date) => ({
+  startDate: format(startOfWeek(startOfMonth(month)), 'yyyy-MM-dd'),
+  endDate: format(endOfWeek(endOfMonth(month)), 'yyyy-MM-dd'),
+});
 
 export const getTodayDateString = (timezone: string = DEFAULT_TIMEZONE) => {
   try {
@@ -17,4 +24,3 @@ export const getTodayDateString = (timezone: string = DEFAULT_TIMEZONE) => {
 
 export const isValidDateInput = (date?: string) =>
   !!date && /^\d{4}-\d{2}-\d{2}$/.test(date);
-
