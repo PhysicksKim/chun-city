@@ -576,7 +576,6 @@ export const PlayerStatisticsContent: React.FC<{
       {/* 프로필 영역 */}
       <ProfileSection
         name={player.name}
-        koreanName={player.koreanName || null}
         photo={player.photo || ''}
         goals={stats?.goals || 0}
         assists={stats?.assists || 0}

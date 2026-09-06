@@ -108,7 +108,7 @@ const LeagueSelector = ({
                   $selected={selectedLeagueUid === league.uid}
                   onClick={() => handleLeagueClick(league.uid)}
                 >
-                  <LeagueName>{league.nameKo ?? league.name}</LeagueName>
+                  <LeagueName>{league.name}</LeagueName>
                 </LeagueCard>
               ))}
           </EmblaContainer>

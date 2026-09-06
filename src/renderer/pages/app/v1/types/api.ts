@@ -8,7 +8,6 @@ export interface TeamInfo {
   teamUid: string;
   name: string;
   shortName?: string;
-  koreanName?: string;
   logo?: string;
   playerColor?: PlayerColor;
 }
@@ -17,7 +16,6 @@ export interface AvailableLeagueResponse {
   uid: string;
   name: string;
   shortName?: string;
-  nameKo?: string;
   logo?: string;
 }
 
@@ -67,7 +65,6 @@ export interface FixtureInfoResponse {
     leagueUid: string;
     name: string;
     shortName?: string;
-    koreanName?: string;
     logo?: string;
   };
   home: TeamInfo;
@@ -79,7 +76,6 @@ export interface LineupPlayer {
   playerUid: string;
   name: string;
   shortName?: string;
-  koreanName?: string;
   number?: number;
   photo?: string;
   position?: string;
@@ -91,7 +87,6 @@ export interface StartLineup {
   teamUid: string;
   teamName: string;
   teamShortName?: string;
-  teamKoreanName?: string;
   formation?: string;
   players: LineupPlayer[];
   substitutes: LineupPlayer[];

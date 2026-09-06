@@ -1,14 +1,12 @@
 export interface League {
   id: number;
   name: string;
-  koreanName: string | null;
   logo: string;
 }
 
 export interface Team {
   id: number;
   name: string;
-  koreanName: string | null;
   logo: string;
 }
 
@@ -17,13 +15,11 @@ export type EventType = 'GOAL' | 'CARD' | 'SUBST' | 'VAR' | string;
 export interface EventTeam {
   teamId: number;
   name: string;
-  koreanName: string;
 }
 
 export interface EventPlayer {
   playerId: number;
   name: string;
-  koreanName: string;
   number: number;
   tempId: string | null;
 }
@@ -114,7 +110,6 @@ export interface TeamLineups {
 export interface LineupTeam {
   teamId: number;
   teamName: string;
-  teamKoreanName: string | null;
   formation: string;
   players: LineupPlayer[];
   substitutes: LineupPlayer[];
@@ -123,7 +118,6 @@ export interface LineupTeam {
 export interface LineupPlayer {
   id: number;
   name: string;
-  koreanName: string;
   number: number;
   photo: string;
   position: string;
@@ -135,7 +129,6 @@ export interface LineupPlayer {
 export interface ViewPlayer {
   id: number;
   name: string;
-  koreanName: string | null;
   number: number;
   photo: string;
   position: string;
@@ -211,7 +204,6 @@ export interface XG {
 export interface PlayerBasicInfo {
   id: number;
   name: string;
-  koreanName: string | null;
   photo: string;
   number: number;
   position: string;

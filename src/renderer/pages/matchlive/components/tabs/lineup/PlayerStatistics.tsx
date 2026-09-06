@@ -8,7 +8,6 @@ import RetryableImage from '@matchlive/components/common/RetryableImage';
 
 interface ProfileSectionProps {
   name: string;
-  koreanName: string | null;
   photo: string;
   goals: number;
   assists: number;
@@ -17,7 +16,6 @@ interface ProfileSectionProps {
 
 const ProfileSection: React.FC<ProfileSectionProps> = ({
   name,
-  koreanName,
   photo,
   goals,
   assists,
@@ -30,7 +28,6 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       </div>
       <div className="player-infos">
         <div className="player-name">{name}</div>
-        <div className="player-name-korean">{koreanName ? koreanName : ''}</div>
         <div className="player-rating-box">
           <div className="rating-title">평점</div>
           <PlayerStatisticsRatingBox rating={rating} />
@@ -294,13 +291,6 @@ const ProfileSectionContainer = styled.div`
     flex-grow: 1;
 
     .player-name {
-      font-size: 14px;
-      font-weight: 500;
-      color: #555;
-      margin-bottom: 2px;
-    }
-
-    .player-name-korean {
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 5px;

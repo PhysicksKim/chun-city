@@ -118,16 +118,16 @@ const EventCard = ({ event }: { event: EventInfo }) => {
           </EventType>
           <EventPlayer>
             {playerLabel && `${playerLabel}: `}
-            {event.player?.koreanName || event.player?.name || ''}
+            {event.player?.name || ''}
             {event.assist && assistLabel && (
               <AssistInfo>
-                {assistLabel}: {event.assist.koreanName || event.assist.name}
+                {assistLabel}: {event.assist.name}
               </AssistInfo>
             )}
           </EventPlayer>
           {event.comments && <EventComments>{event.comments}</EventComments>}
         </EventDetails>
-        <TeamBadge>{event.team.koreanName || event.team.name}</TeamBadge>
+        <TeamBadge>{event.team.name}</TeamBadge>
       </EventContent>
     </EventCardContainer>
   );

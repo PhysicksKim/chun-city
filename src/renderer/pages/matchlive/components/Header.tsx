@@ -40,13 +40,13 @@ const Header = ({
   return (
     <HeaderContainer $isAbsolute={$isAbsolute}>
       <LeagueInfo>
-        <LeagueName>{info.league.koreanName || info.league.name}</LeagueName>
+        <LeagueName>{info.league.name}</LeagueName>
       </LeagueInfo>
 
       <MatchInfo>
         <TeamSection>
           <TeamLogo src={homeTeam.logo} alt="" />
-          <TeamName>{homeTeam.koreanName || homeTeam.name}</TeamName>
+          <TeamName>{homeTeam.name}</TeamName>
         </TeamSection>
 
         <ScoreSection>
@@ -67,7 +67,7 @@ const Header = ({
 
         <TeamSection>
           <TeamLogo src={awayTeam.logo} alt="" />
-          <TeamName>{awayTeam.koreanName || awayTeam.name}</TeamName>
+          <TeamName>{awayTeam.name}</TeamName>
         </TeamSection>
       </MatchInfo>
 

@@ -128,7 +128,7 @@ const LineupGrid: React.FC<LineupGridProps> = ({
                   </PlayerNumberPhotoBox>
 
                   <PlayerName
-                    name={finalPlayer.koreanName || finalPlayer.name}
+                    name={finalPlayer.name}
                     fontSize={nameFontSize}
                   />
                 </GridPlayer>

@@ -125,14 +125,14 @@ const MatchliveControlTab = () => {
           <>
             <div className="league-info-box">
               <div className="league-info">
-                <span>{info.league.koreanName || info.league.name}</span>
+                <span>{info.league.name}</span>
               </div>
             </div>
             <div className="fixture-info-box">
               <div className="home-team-box team-box">
                 <div className="home-mark">홈</div>
                 <div className="home-team-name team-name">
-                  {info.home.koreanName || info.home.name}
+                  {info.home.name}
                 </div>
                 <div className="home-team-logo team-logo">
                   {info.home.logo && (
@@ -153,7 +153,7 @@ const MatchliveControlTab = () => {
                   )}
                 </div>
                 <div className="away-team-name team-name">
-                  {info.away.koreanName || info.away.name}
+                  {info.away.name}
                 </div>
                 <div className="away-mark">
                   {/* 사이즈 맞추기 위한 빈 태그 */}

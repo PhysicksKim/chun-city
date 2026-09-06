@@ -140,16 +140,12 @@ const StatsTab = ({ isActive }: StatsTabProps) => {
               <TeamColorBar $color={homeDisplayColor} $side="left" />
             )}
             <TeamName>
-              {statistics.home?.team?.koreanName ||
-                statistics.home?.team?.name ||
-                '홈팀'}
+              {statistics.home?.team?.name || '홈팀'}
             </TeamName>
           </TeamNameWrapper>
           <TeamNameWrapper>
             <TeamName>
-              {statistics.away?.team?.koreanName ||
-                statistics.away?.team?.name ||
-                '어웨이팀'}
+              {statistics.away?.team?.name || '어웨이팀'}
             </TeamName>
             {awayDisplayColor && (
               <TeamColorBar $color={awayDisplayColor} $side="right" />

@@ -201,7 +201,6 @@ const fixtureLiveSlice = createSlice({
               team: {
                 id: 0,
                 name: '',
-                koreanName: null,
                 logo: '',
               },
               teamStatistics: {
@@ -230,7 +229,6 @@ const fixtureLiveSlice = createSlice({
               team: {
                 id: 0,
                 name: '',
-                koreanName: null,
                 logo: '',
               },
               teamStatistics: {

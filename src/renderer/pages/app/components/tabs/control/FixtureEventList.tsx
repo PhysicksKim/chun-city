@@ -33,17 +33,17 @@ const translateEventType = (type: string, detail?: string): string => {
 
 const getSubstDisplayText = (event: EventInfo): string => {
   if (event.type.toLowerCase() !== 'subst') {
-    return event?.player?.koreanName || event?.player?.name || '';
+    return event?.player?.name || '';
   }
 
   // V1 API에서는 player와 assist를 사용하여 교체 정보 표시
   if (event.player && event.assist) {
-    const outName = event.player.koreanName || event.player.name || '';
-    const inName = event.assist.koreanName || event.assist.name || '';
+    const outName = event.player.name || '';
+    const inName = event.assist.name || '';
     return `${outName} → ${inName}`;
   }
 
-  return event?.player?.koreanName || event?.player?.name || '';
+  return event?.player?.name || '';
 };
 
 const FixtureEventList: React.FC<EventListProps> = ({
@@ -95,7 +95,7 @@ const FixtureEventList: React.FC<EventListProps> = ({
                     {translateEventType(event.type, event.detail)}
                   </td>
                   <td className="event-filter__item-detail event-filter__item-detail--team">
-                    {event.team.koreanName || event.team.name}
+                    {event.team.name}
                   </td>
                   <td className="event-filter__item-detail event-filter__item-detail--player">
                     {getSubstDisplayText(event)}
@@ -110,4 +110,3 @@ const FixtureEventList: React.FC<EventListProps> = ({
 };
 
 export default FixtureEventList;
-

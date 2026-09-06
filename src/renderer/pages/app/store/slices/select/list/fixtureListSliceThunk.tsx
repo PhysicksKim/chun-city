@@ -20,12 +20,10 @@ export interface FixtureListItemResponse {
   teamA: {
     name: string;
     logo: string;
-    koreanName: string | null;
   };
   teamB: {
     name: string;
     logo: string;
-    koreanName: string | null;
   };
   status: {
     longStatus: string;

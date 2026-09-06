@@ -28,8 +28,7 @@ const isCompleteLineupData = (fixtureLineup: FixtureLineup) => {
   for (const lineup of lineups) {
     if (
       !(lineup.length > 0) ||
-      !allPlayersAreRegistered(lineup) ||
-      !allPlayersHaveKoreanName(lineup)
+      !allPlayersAreRegistered(lineup)
     ) {
       return false;
     }
@@ -41,15 +40,6 @@ const isCompleteLineupData = (fixtureLineup: FixtureLineup) => {
 const allPlayersAreRegistered = (players: LineupPlayer[]) => {
   for (let i = 0; i < players.length; i++) {
     if (!players[i].id) {
-      return false;
-    }
-  }
-  return true;
-};
-
-const allPlayersHaveKoreanName = (players: LineupPlayer[]) => {
-  for (let i = 0; i < players.length; i++) {
-    if (!players[i].koreanName) {
       return false;
     }
   }

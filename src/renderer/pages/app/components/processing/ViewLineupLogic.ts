@@ -310,7 +310,6 @@ export const applyEventsToLineup = (
         const subInViewPlayer: ViewPlayer = {
           id: substitute.id,
           name: substitute.name,
-          koreanName: substitute.koreanName,
           number: substitute.number,
           photo: substitute.photo,
           position: substitute.position,
