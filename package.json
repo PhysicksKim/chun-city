@@ -1,6 +1,6 @@
 {
   "name": "footballay-desktop",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "main": "dist-electron/main/main.js",
   "description": "football live match streaming overlay tool",
   "author": "physicks",
