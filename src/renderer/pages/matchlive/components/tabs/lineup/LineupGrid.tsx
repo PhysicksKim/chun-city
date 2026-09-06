@@ -87,13 +87,20 @@ const LineupGrid: React.FC<LineupGridProps> = ({
                     className="player-number-photo-box"
                     onClick={() => handlePlayerClick(finalPlayer)}
                   >
-                    {photoExistAndShowPhoto ? (
+                    {photoExistAndShowPhoto && (
                       <RetryableImage
                         src={finalPlayer.photo!}
                         alt={finalPlayer.name}
                       />
-                    ) : (
-                      <PlayerNumber number={finalPlayer.number || 0} />
+                    )}
+
+                    <PlayerName
+                      name={finalPlayer.name}
+                      fontSize={nameFontSize}
+                    />
+
+                    {finalPlayer.number && (
+                      <PlayerNumber number={finalPlayer.number} />
                     )}
 
                     {/* Events */}
@@ -126,11 +133,6 @@ const LineupGrid: React.FC<LineupGridProps> = ({
                       <RatingBox rating={finalPlayer.statistics.rating} />
                     )}
                   </PlayerNumberPhotoBox>
-
-                  <PlayerName
-                    name={finalPlayer.name}
-                    fontSize={nameFontSize}
-                  />
                 </GridPlayer>
               )
             );

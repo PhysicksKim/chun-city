@@ -402,7 +402,7 @@ const PlayerNumberWrapper = styled.div<{
   $number: number;
 }>`
   position: absolute;
-  bottom: 0%;
+  bottom: 5px;
   left: 0%;
   transform: translate(-50%, 0);
   width: 24px;
@@ -436,9 +436,11 @@ export const PlayerNumber: React.FC<{ number: number }> = ({ number }) => {
 };
 
 const PlayerNameSpan = styled.span<{ $fontsize: number }>`
-  position: relative;
+  position: absolute;
+  top: 100%;
+  left: 50%;
   overflow: visible;
-  transform: translate(0, -${playerNameOverlapOffsetPx}px);
+  transform: translate(-50%, -${playerNameOverlapOffsetPx}px);
   background-color: #0a4192c1;
   padding: 0 2px;
   border-radius: 5px;
